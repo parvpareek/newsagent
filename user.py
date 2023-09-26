@@ -14,7 +14,7 @@ user = Agent(
  
 fund_agent_if_low(user.wallet.address())
  
-country = input("enter your coutnry code in two letter ISO format(e.g in, us)")
+country = input("enter your coutnry code in two letter ISO format(e.g in, us): ")
 
 
 registration = register(
@@ -35,13 +35,13 @@ async def interval(ctx: Context):
 async def handle_registration_response(ctx: Context, sender: str, msg: Category):
     
     print("Enter the category you want your news from 1. World 2. Automobile 3.Science 4. Entertainment 5. Sports 6. Technology 7. Politics")
-    category = input("Enter your choice")
+    category = input("Enter your choice: ")
     await ctx.send(NEWS_ADDRESS, Category(category=category))
  
 @user.on_message(News)
-async def handle_news(ctx: Context, _sender: str, news: News):
+async def handle_news(ctx: Context, _sender: str, newspaper: News):
     ctx.logger.info("The news is: ")
-    for article in news:
+    for article in newspaper.news:
         ctx.logger.info(article['title'])
         ctx.logger.info(article['description'])
 
